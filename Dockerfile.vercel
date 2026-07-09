@@ -10,8 +10,9 @@ COPY . .
 # Install FastAPI and uvicorn dependencies
 RUN pip install --no-cache-dir fastapi uvicorn python-multipart
 
-# Install the markitdown package with [docx,pdf] optional formats support
-RUN pip install --no-cache-dir -e ./packages/markitdown[docx,pdf]
+# Install the markitdown package with optional format support: docx, pdf, pptx, xlsx
+# md files are handled by the built-in PlainTextConverter (no extra deps needed)
+RUN pip install --no-cache-dir -e ./packages/markitdown[docx,pdf,pptx,xlsx]
 
 EXPOSE 8000
 
